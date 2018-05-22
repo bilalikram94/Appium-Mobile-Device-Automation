@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class Today_Today(unittest.TestCase):
@@ -24,8 +25,8 @@ class Today_Today(unittest.TestCase):
         self.dc['platformName'] = 'android'
         self.dc['version'] = '8.0.0'
         self.dc
-        self.driver = webdriver.Remote(desired_capabilities=webdriver.DesiredCapabilities.ANDROID)
-        self.driver1 = webdriver.Remote('http://localhost:4726/wd/hub', self.dc)
+        self.driver = webdriver.Remote('http://localhost:4726/wd/hub', self.dc, DesiredCapabilities.ANDROID)
+
 
 
     def testToday_Today(self):
