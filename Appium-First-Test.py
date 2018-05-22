@@ -1,11 +1,8 @@
 import unittest
-
 from appium import webdriver
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 class Today_Today(unittest.TestCase):
@@ -25,13 +22,12 @@ class Today_Today(unittest.TestCase):
         self.dc['platformName'] = 'android'
         self.dc['version'] = '8.0.0'
         self.dc
-        self.driver = webdriver.Remote('http://localhost:4726/wd/hub', self.dc, DesiredCapabilities.ANDROID)
-
-
+        self.driver = webdriver.Remote('http://localhost:5037/wd/hub', self.dc)
 
     def testToday_Today(self):
         self.driver.switch_to.context("NATIVE_APP")
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located((By.XPATH, "//*[@text='Categories']")))
+        WebDriverWait(self.driver, 10).until(
+            expected_conditions.presence_of_element_located((By.XPATH, "//*[@text='Categories']")))
         self.driver.find_element_by_xpath("//*[@x='846']").click()
         self.driver.find_element_by_xpath("//*[@x='48']").click()
         self.driver.find_element_by_xpath("//*[@x='48']").click()
@@ -43,10 +39,6 @@ class Today_Today(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    if __name__ == '__main__':
-        unittest.main()
 
-
-ff = Today_Today()
-ff.setUp()
-ff.testToday_Today()
+if __name__ == '__main__':
+    unittest.main()
